@@ -1,5 +1,6 @@
 package theater;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.HashMap;
@@ -31,7 +32,7 @@ public class Movie {
 		return Collections.unmodifiableMap(this.broadcasts);
 	}
 	
-	void addbroadcast(Hall hall, LocalTime time) {
+	void addBroadcast(Hall hall, LocalTime time) {
 		this.broadcasts.put(hall, time);
 	}
 
@@ -59,10 +60,5 @@ public class Movie {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
 	
 }

@@ -1,18 +1,23 @@
 package theater;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
+import systemusers.Client;
+
 public class Cinema {
+	
 	// Singleton class
 	private static Cinema instance = null;
 	private String name;
 	private String address;
 	private TreeSet<Hall> halls;
-	private Set<Movie> movies;
+	private HashSet<Movie> movieCatalog;
+	private HashSet<Client> clients;
 	
 	private Cinema() {
 		this.name = "Botevgrad Movie Theater";
-		this.address = "ul. Filmova 7";
+		this.address = "Cinema Str 7";
 		for (int i = 1; i <= 5; i++) {
 			this.halls.add(new Hall(i));
 		}
@@ -34,5 +39,17 @@ public class Cinema {
 		
 	}
 
+	public void addMovie(Movie movie) {
+		if(movie != null){
+			this.movieCatalog.add(movie);
+		}
+	}
+	
+	public void removeMovie(Movie movie) {
+		if(movie != null){
+			this.movieCatalog.remove(movie);
+		}
+	}
+	
 	
 }
