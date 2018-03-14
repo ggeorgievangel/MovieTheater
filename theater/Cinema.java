@@ -1,5 +1,6 @@
 package theater;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -11,9 +12,10 @@ public class Cinema {
 	private static Cinema instance = null;
 	private String name;
 	private String address;
-	private TreeSet<Hall> halls;
-	private HashSet<Movie> movieCatalog;
-	private HashSet<Client> clients;
+	private Set<Client> clients;
+	private Set<Watchable> movies;
+	private LinkedHashSet<Hall> halls;
+	private Set<Broadcast> broadcasts;
 	
 	private Cinema() {
 		this.name = "Botevgrad Movie Theater";
@@ -31,23 +33,24 @@ public class Cinema {
 		return instance;
 	}
 	
-	public void acceptReservation(Movie m, int places) {
+	public void checkReservation(Movie m, int places) {
 		// check in which hall is this movie projected
-			// if there are enough places --> reserve 
-			// if free places < places --> message
-		
-		
+			// if there are enough places --> 
+			//invoke method acceptReservation that returns ticket
+			// else if free places are not enough --> message
 	}
 
+	
+	
 	public void addMovie(Movie movie) {
 		if(movie != null){
-			this.movieCatalog.add(movie);
+			this.movies.add(movie);
 		}
 	}
 	
 	public void removeMovie(Movie movie) {
 		if(movie != null){
-			this.movieCatalog.remove(movie);
+			this.movies.remove(movie);
 		}
 	}
 	

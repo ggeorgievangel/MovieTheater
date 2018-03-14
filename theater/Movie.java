@@ -6,12 +6,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Movie {
+public class Movie implements Watchable {
 
 	private String name;
 	private String info;
-	private int rating;
-	private HashMap<Hall,LocalTime> broadcasts = new HashMap<>();
+	private int rating; 
+	private HashMap<Hall,LocalTime> broadcasts = new HashMap<>(); // check to remove it
 	
 	public Movie(String name,String info) {
 		this.name = name;
@@ -36,6 +36,11 @@ public class Movie {
 		this.broadcasts.put(hall, time);
 	}
 
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -32,5 +32,13 @@ public class Admin extends User {
 		}
 	}
 	
+	public void addBroadcast() {
+		// TODO
+		
+	}
 	
+	public void removeBroadcast() {
+		// TODO
+		
+	}
 }

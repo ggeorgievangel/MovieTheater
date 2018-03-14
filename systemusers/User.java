@@ -24,7 +24,7 @@ public abstract class User {
 	public abstract void logOut();
 	
 	public static Cinema getCinema() {
-		return cinema;
+		return User.cinema;
 	}
 	
 }
