@@ -8,11 +8,5 @@ public class Demo {
 		
 		
 		
-		
-		
-		
-		
-		System.out.println("Hi git");
 	}
-	
 }
