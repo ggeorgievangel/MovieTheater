@@ -8,6 +8,7 @@ import systemusers.Client;
 
 public class Cinema {
 	
+	private static final int ALL_HALLS = 5;
 	// Singleton class
 	private static Cinema instance = null;
 	private String name;
@@ -20,7 +21,7 @@ public class Cinema {
 	private Cinema() {
 		this.name = "Botevgrad Movie Theater";
 		this.address = "Cinema Str 7";
-		for (int i = 1; i <= 5; i++) {
+		for (int i = 1; i <= ALL_HALLS; i++) {
 			this.halls.add(new Hall(i));
 		}
 	}
@@ -33,10 +34,9 @@ public class Cinema {
 		return instance;
 	}
 	
-	public void checkReservation(Movie m, int places) {
-		// check in which hall is this movie projected
-			// if there are enough places --> 
-			//invoke method acceptReservation that returns ticket
+	public void checkReservation(Broadcast b, int places) {
+		// check is there enough places for this broadcast
+			// if there are enough places --> return reservation for this broadcast with places
 			// else if free places are not enough --> message
 	}
 

@@ -4,13 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import theater.Broadcast;
 import theater.Movie;
-import theater.Ticket;
+import theater.Reservation;
 import java.time.LocalDate;
 public class Client extends User {
 
 	private Set<Movie> watchList;
-	private List<Ticket> reservations = new ArrayList<>();
+	private List<Reservation> reservations = new ArrayList<>();
 
 	public Client(String name, String username, String password, String email, String phone) {
 		super(name, username, password, email, phone);
@@ -41,15 +43,14 @@ public class Client extends User {
 	}
 	
 	public void makeReservation(int places) {
-		Movie chosenMovie = null;
-		
-		//Choose movie from Cinema movie list
-		//Choose time and date
-	
-		this.getCinema().checkReservation(chosenMovie, places);
+		// Choose broadcast from Cinema broadcast list by typing:
+			// movie
+			// Date and Time
+		Broadcast b = null;
+		Client.getCinema().checkReservation(b, places);
 	}
 	
-	public void reciveTicket(Ticket t) {
+	public void reciveTicket(Reservation t) {
 		if(t != null) {
 			this.reservations.add(t);
 		}
