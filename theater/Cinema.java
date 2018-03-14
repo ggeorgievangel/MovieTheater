@@ -1,10 +1,13 @@
 package theater;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
+import demo.Supp;
 import systemusers.Client;
 
 public class Cinema {
@@ -14,16 +17,16 @@ public class Cinema {
 
 	private String name;
 	private String address;
-	private Set<Client> clients;
-	private Set<Watchable> movies;
-	private LinkedHashSet<Hall> halls;
-	private Set<Broadcast> broadcasts;
+	private Set<Client> clients = new HashSet();
+	private Set<Watchable> movies = new HashSet();
+	private LinkedHashSet<Hall> halls = new LinkedHashSet();
+	private HashSet<Broadcast> broadcasts = new HashSet();
 	
 	private Cinema() {
 		this.name = "Botevgrad Movie Theater";
 		this.address = "Cinema Str 7";
 		for (int i = 1; i <= ALL_HALLS; i++) {
-			this.halls.add(new Hall(i));
+			this.halls.add(new Hall(i,this));
 		}
 	}
 	
@@ -33,6 +36,23 @@ public class Cinema {
 			return instance;
 		}
 		return instance;
+	}
+	
+	public void setTheBroadcasts() {
+		for(Watchable w : this.movies) {
+			ArrayList<Hall> halls = new ArrayList<>(this.halls);
+			this.broadcasts.add(new Broadcast(w,LocalTime.of(13, 00),halls.get(Supp.getRandomNum(halls.size()))));
+			this.broadcasts.add(new Broadcast(w,LocalTime.of(17, 15),halls.get(Supp.getRandomNum(halls.size()))));
+			this.broadcasts.add(new Broadcast(w,LocalTime.of(20, 30),halls.get(Supp.getRandomNum(halls.size()))));
+		}
+	}
+	
+	public void printBroadcasts() {
+		System.out.println("#########Broadcast for the day in cinema " + this.name + "########");
+		System.out.println();
+		for(Broadcast b : this.broadcasts) {
+			System.out.println(b.getMovie().getName() + " from " + b.getProjectionTime() + " in hall " + b.getProjectionHall().getNumber());
+		}
 	}
 	
 	public void checkReservation(Broadcast b, int places) {
@@ -53,6 +73,10 @@ public class Cinema {
 		if(movie != null){
 			this.movies.remove(movie);
 		}
+	}
+	
+	public void registurClient() {
+		
 	}
 	
 	// getters and setters:
