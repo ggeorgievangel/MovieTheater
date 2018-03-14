@@ -7,9 +7,8 @@ import java.util.TreeSet;
 import systemusers.Client;
 
 public class Cinema {
-	
-	private static final int ALL_HALLS = 5;
 	// Singleton class
+	private static final int ALL_HALLS = 5;
 	private static Cinema instance = null;
 	private String name;
 	private String address;
