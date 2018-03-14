@@ -15,6 +15,7 @@ public class Movie {
 	public Movie(String name,String info) {
 		this.name = name;
 		this.info = info;
+		this.rating = 0;
 	}
 	
 	public String getName() {
