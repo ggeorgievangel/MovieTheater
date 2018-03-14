@@ -7,7 +7,7 @@ public class Hall {
 
 	private int number;
 	private int sits;
-	private HashMap<Movie,LocalTime> movies = new HashMap<>();
+	private HashMap<Movie,LocalTime> movies = new HashMap<>(); // can be replaced with list of Broadcast objects
 	
 	public Hall(int number) {
 		this.number = number;
