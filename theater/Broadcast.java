@@ -14,9 +14,4 @@ public class Broadcast {
 		this.projectionHall = projectionHall;
 	}
 	
-	@Override
-	public boolean equals(Object arg0) {
-		return super.equals(arg0);
-	}
-	
 }

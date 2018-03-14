@@ -1,4 +1,5 @@
 package theater;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -10,6 +11,7 @@ public class Cinema {
 	// Singleton class
 	private static final int ALL_HALLS = 5;
 	private static Cinema instance = null;
+
 	private String name;
 	private String address;
 	private Set<Client> clients;
@@ -53,5 +55,10 @@ public class Cinema {
 		}
 	}
 	
+	// getters and setters:
+	
+	public Set<Broadcast> getBroadcasts() {
+		return Collections.unmodifiableSet(broadcasts);
+	}
 	
 }
