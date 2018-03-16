@@ -16,19 +16,8 @@ public class Client extends User {
 	private List<Reservation> reservations = new ArrayList<>();
 
 	public Client(String name, String username, String password, String email, String phone) {
-		super(name, username, password, email, phone);
+		super(name, email, phone);
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void signIn(String username,String password) {
-		this.cinema.registr(username,passward);
-		
-	}
-
-	@Override
-	public void logOut() {
-		// TODO Auto-generated method stub
 	}
 	
 	public void addMovieToWatchList(Movie movie) {
@@ -57,4 +46,7 @@ public class Client extends User {
 			this.reservations.add(t);
 		}
 	}
+	
+
+	
 }

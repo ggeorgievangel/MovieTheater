@@ -6,19 +6,10 @@ public class Admin extends User {
 	
 	
 	public Admin(String name, String username, String password, String email, String phone) {
-		super(name, username, password, email, phone);
-		// TODO Auto-generated constructor stub
+		super(name, email, phone);
 	}
 
-	@Override
-	public void signIn() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void logOut() {
-		// TODO Auto-generated method stub
-	}
+	
 
 	public void addMovie(Movie movie) {
 		if(movie != null){

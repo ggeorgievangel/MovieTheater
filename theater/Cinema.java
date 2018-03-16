@@ -5,23 +5,24 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
-import demo.Supp;
 import systemusers.Client;
+import systemusers.SystemCheck;
 import systemusers.User;
 
 public class Cinema {
+	
 	// Singleton class
 	private static final int ALL_HALLS = 4;
 	private static Cinema instance = null;
-
 	private String name;
 	private String address;
-	private Set<User> users = new HashSet();
-	private Set<Watchable> movies = new HashSet();
-	private LinkedHashSet<Hall> halls = new LinkedHashSet();
-	private TreeSet<Broadcast> broadcasts = new TreeSet();
+	private static TreeSet<User> users = new TreeSet<>();
+	private Set<Watchable> movies = new HashSet<>();
+	private LinkedHashSet<Hall> halls = new LinkedHashSet<>();
+	private TreeSet<Broadcast> broadcasts = new TreeSet<>();
 	
 	private Cinema() {
 		this.name = "Botevgrad Movie Theater";
@@ -60,9 +61,11 @@ public class Cinema {
 	}
 	
 	public void checkReservation(Broadcast b, int places) {
+	
 		// check is there enough places for this broadcast
 			// if there are enough places --> return reservation for this broadcast with places
 			// else if free places are not enough --> message
+	
 	}
 
 	
@@ -83,10 +86,21 @@ public class Cinema {
 		
 	}
 	
-	// getters and setters:
 	
 	public Set<Broadcast> getBroadcasts() {
 		return Collections.unmodifiableSet(broadcasts);
+	}
+
+	public static boolean registrationCheck() {
+		for(User u : users) {
+			
+		}
+		return false;
+	}
+
+	public static void registrateUser(User user) {
+		users.add(user);
+		
 	}
 	
 }
