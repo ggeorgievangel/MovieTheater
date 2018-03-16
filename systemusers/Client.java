@@ -18,21 +18,10 @@ public class Client extends User {
 	private List<Reservation> reservations = new ArrayList<>();
 
 	public Client(String name, String username, String password, String email, String phone) {
-		super(name, username, password, email, phone);
+		super(name, email, phone);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void signIn(String username,String password) {
-		
-		
-	}
-
-	@Override
-	public void logOut() {
-		// TODO Auto-generated method stub
-	}
-	
 	public void addMovieToWatchList(Movie movie) {
 		if(movie != null){
 			this.watchList.add(movie);
@@ -47,7 +36,7 @@ public class Client extends User {
 	
 	public void makeReservation(int places) {
 		ArrayList<Broadcast> broad = new ArrayList(cinema.getBroadcasts());
-		Broadcast b = broad.get(Supp.getRandomNum(broad.size()-1));
+		Broadcast b = broad.get(SystemCheck.getRandomNum(broad.size()-1));
 		System.out.println(this.name + ": I'm making reservation for " + b.getMovie().getName() + " for " +b.getProjectionTime() + " in hall " + b.getProjectionHall().getNumber() + " and " + places + " sits");
 		Reservation reserve = this.cinema.checkReservation(b,places);
 		if(reserve != null) {
@@ -73,4 +62,7 @@ public class Client extends User {
 			this.reservations.add(t);
 		}
 	}
+	
+
+	
 }
