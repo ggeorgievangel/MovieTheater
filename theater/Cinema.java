@@ -9,18 +9,19 @@ import java.util.TreeSet;
 
 import demo.Supp;
 import systemusers.Client;
+import systemusers.User;
 
 public class Cinema {
 	// Singleton class
-	private static final int ALL_HALLS = 5;
+	private static final int ALL_HALLS = 4;
 	private static Cinema instance = null;
 
 	private String name;
 	private String address;
-	private Set<Client> clients = new HashSet();
+	private Set<User> users = new HashSet();
 	private Set<Watchable> movies = new HashSet();
 	private LinkedHashSet<Hall> halls = new LinkedHashSet();
-	private HashSet<Broadcast> broadcasts = new HashSet();
+	private TreeSet<Broadcast> broadcasts = new TreeSet();
 	
 	private Cinema() {
 		this.name = "Botevgrad Movie Theater";
@@ -39,11 +40,14 @@ public class Cinema {
 	}
 	
 	public void setTheBroadcasts() {
+		int i = 0;
+		ArrayList<Hall> halls = new ArrayList<>(this.halls);
 		for(Watchable w : this.movies) {
-			ArrayList<Hall> halls = new ArrayList<>(this.halls);
-			this.broadcasts.add(new Broadcast(w,LocalTime.of(13, 00),halls.get(Supp.getRandomNum(halls.size()))));
-			this.broadcasts.add(new Broadcast(w,LocalTime.of(17, 15),halls.get(Supp.getRandomNum(halls.size()))));
-			this.broadcasts.add(new Broadcast(w,LocalTime.of(20, 30),halls.get(Supp.getRandomNum(halls.size()))));
+			this.broadcasts.add(new Broadcast(w,LocalTime.of(10, 00),halls.get(i)));
+			this.broadcasts.add(new Broadcast(w,LocalTime.of(14, 00),halls.get(i)));
+			this.broadcasts.add(new Broadcast(w,LocalTime.of(19, 00),halls.get(i)));
+			this.broadcasts.add(new Broadcast(w,LocalTime.of(22, 30),halls.get(i)));
+			i++;
 		}
 	}
 	

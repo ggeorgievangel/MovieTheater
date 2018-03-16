@@ -21,8 +21,8 @@ public class Client extends User {
 	}
 
 	@Override
-	public void signIn() {
-		// TODO Auto-generated method stub
+	public void signIn(String username,String password) {
+		this.cinema.registr(username,passward);
 		
 	}
 
@@ -44,6 +44,7 @@ public class Client extends User {
 	}
 	
 	public void makeReservation(int places) {
+		
 		// Choose broadcast from Cinema broadcast list by typing:
 			// movie
 			// Date and Time

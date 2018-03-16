@@ -3,7 +3,7 @@ package theater;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Broadcast{
+public class Broadcast implements Comparable<Broadcast>{
 
 	private Movie movie;
 	private LocalTime projectionTime;
@@ -56,6 +56,14 @@ public class Broadcast{
 		} else if (!projectionTime.equals(other.projectionTime))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Broadcast b) {
+		if(this.projectionHall.getNumber() - b.projectionHall.getNumber() == 0) {
+			return this.projectionTime.compareTo(b.projectionTime);
+		}
+		return this.projectionHall.getNumber() - b.projectionHall.getNumber();
 	}
 
 	

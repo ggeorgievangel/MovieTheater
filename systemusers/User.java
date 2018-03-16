@@ -9,7 +9,7 @@ public abstract class User {
 	private String password;
 	private String email;
 	private String phone;
-	private static Cinema cinema;
+	protected static Cinema cinema;
 	
 	public User(String name, String username, String password, String email, String phone) {
 		this.name = name;
