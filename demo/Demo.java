@@ -2,6 +2,7 @@ package demo;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import systemusers.Admin;
 import systemusers.Client;
@@ -39,10 +40,6 @@ public class Demo {
 		clients.get(SystemCheck.getRandomNum(clients.size()-1)).cancelLastReservation();
 		clients.get(SystemCheck.getRandomNum(clients.size()-1)).cancelLastReservation();
 		clients.get(SystemCheck.getRandomNum(clients.size()-1)).cancelLastReservation();
-		
-		
-		
-		
 		
 		
 	}

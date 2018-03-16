@@ -9,8 +9,6 @@ public class Admin extends User {
 		super(name, email, phone);
 	}
 
-
-
 	public void addMovie(Movie movie) {
 		if(movie != null){
 			User.getCinema().addMovie(movie);
@@ -25,11 +23,9 @@ public class Admin extends User {
 	
 	public void addBroadcast() {
 		// TODO
-		
 	}
 	
 	public void removeBroadcast() {
 		// TODO
-		
 	}
 }
