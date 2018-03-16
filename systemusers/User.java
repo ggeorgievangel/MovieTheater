@@ -17,9 +17,24 @@ public abstract class User {
 	protected static Cinema cinema;
 	
 	public User(String name, String email, String phone) {
-		this.name = name;
-		this.email = email;
-		this.phone = phone;
+		if(SystemCheck.verifyName(name)) {
+			this.name = name;
+		}else {
+			System.out.println("Invalid name!!");
+		}
+		
+		if(SystemCheck.verifyEmail(email)) {
+			this.email = email;
+		}else {
+			System.out.println("Invalid email!!");
+		}
+		
+		if(SystemCheck.verifyPhoneNumber(phone)) {
+			this.phone = phone;
+		}else {
+			System.out.println("Invalid number!!");
+		}
+		
 		this.cinema = Cinema.getInstance();
 	}
 
