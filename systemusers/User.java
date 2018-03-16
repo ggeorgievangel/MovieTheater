@@ -16,24 +16,9 @@ public abstract class User {
 	protected static Cinema cinema;
 	
 	public User(String name, String email, String phone) {
-		if(SystemCheck.verifyName(name)) {
-			this.name = name;
-		}else {
-			System.out.println("Invalid name!!");
-		}
-		
-		if(SystemCheck.verifyEmail(email)) {
-			this.email = email;
-		}else {
-			System.out.println("Invalid email!!");
-		}
-		
-		if(SystemCheck.verifyPhoneNumber(phone)) {
-			this.phone = phone;
-		}else {
-			System.out.println("Invalid number!!");
-		}
-		
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
 		this.cinema = Cinema.getInstance();
 	}
 
@@ -56,6 +41,7 @@ public abstract class User {
 	public boolean signIn(String username, String password) {
 		// first check for registration
 		if(Cinema.registrationCheck(username, password)) {
+			System.out.println(this.name + " you are logged in!");
 			this.activeAccount = true;
 			return true;
 		}
