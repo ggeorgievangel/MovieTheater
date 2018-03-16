@@ -12,7 +12,7 @@ public abstract class User {
 	protected String password;
 	protected String email;
 	protected String phone;
-	private boolean activeAccount;
+	protected boolean activeAccount;
 	protected static Cinema cinema;
 	
 	public User(String name, String email, String phone) {
