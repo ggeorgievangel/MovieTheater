@@ -4,11 +4,11 @@ import theater.Cinema;
 
 public abstract class User {
 	
-	private String name; //First name and last name
-	private String username;
-	private String password;
-	private String email;
-	private String phone;
+	protected String name; //First name and last name
+	protected String username;
+	protected String password;
+	protected String email;
+	protected String phone;
 	protected static Cinema cinema;
 	
 	public User(String name, String username, String password, String email, String phone) {
@@ -20,7 +20,7 @@ public abstract class User {
 		this.cinema = Cinema.getInstance();
 	}
 
-	public abstract void signIn();
+	public abstract void signIn(String username,String password);
 	public abstract void logOut();
 	
 	public static Cinema getCinema() {

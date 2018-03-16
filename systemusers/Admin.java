@@ -11,7 +11,7 @@ public class Admin extends User {
 	}
 
 	@Override
-	public void signIn() {
+	public void signIn(String username,String password) {
 		// TODO Auto-generated method stub
 	}
 

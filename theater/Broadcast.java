@@ -8,17 +8,24 @@ public class Broadcast implements Comparable<Broadcast>{
 	private Movie movie;
 	private LocalTime projectionTime;
 	private Hall projectionHall;
+	private int places;
 	
+
 	public Broadcast(Watchable movie, LocalTime projectionTime, Hall projectionHall) {
 		this.movie = (Movie)movie;
 		this.projectionTime = projectionTime;
 		this.projectionHall = projectionHall;
+		this.places = this.projectionHall.getSits();
 	}
 
 	public Movie getMovie() {
 		return movie;
 	}
-
+	
+	public int getPlaces() {
+		return places;
+	}
+	
 	public LocalTime getProjectionTime() {
 		return projectionTime;
 	}

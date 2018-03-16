@@ -7,7 +7,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-import demo.Supp;
+import systemusers.Supp;
 import systemusers.Client;
 import systemusers.User;
 
@@ -57,12 +57,19 @@ public class Cinema {
 		for(Broadcast b : this.broadcasts) {
 			System.out.println(b.getMovie().getName() + " from " + b.getProjectionTime() + " in hall " + b.getProjectionHall().getNumber());
 		}
+		System.out.println();
+		System.out.println();
 	}
 	
-	public void checkReservation(Broadcast b, int places) {
+	public Reservation checkReservation(Broadcast b, int places) {
 		// check is there enough places for this broadcast
 			// if there are enough places --> return reservation for this broadcast with places
 			// else if free places are not enough --> message
+		if(b.getPlaces() < places) {
+			 System.out.println("Sorry, not eneug free sits for this broadcast.");
+		}
+		return new Reservation(b,places);
+		
 	}
 
 	

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import systemusers.Admin;
 import systemusers.Client;
+import systemusers.Supp;
 import theater.Cinema;
 import theater.Movie;
 
@@ -29,6 +30,15 @@ public class Demo {
 		
 		//Print the program of movies in the cinema
 		cinema.printBroadcasts();
+		//Make reservations
+		for(Client c : clients) {
+			c.makeReservation(Supp.getRandomNum(1, 10));
+		}
+		//3 clients to cancel reservations
+		clients.get(Supp.getRandomNum(clients.size()-1)).cancelLastReservation();
+		clients.get(Supp.getRandomNum(clients.size()-1)).cancelLastReservation();
+		clients.get(Supp.getRandomNum(clients.size()-1)).cancelLastReservation();
+		
 		
 		
 		
