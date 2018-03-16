@@ -10,9 +10,9 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import systemusers.Client;
-import systemusers.SystemCheck;
-import systemusers.User;
+import theater.systemusers.Client;
+import theater.systemusers.SystemCheck;
+import theater.systemusers.User;
 
 public class Cinema {
 

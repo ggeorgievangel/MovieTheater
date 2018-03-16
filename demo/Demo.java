@@ -4,10 +4,11 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import systemusers.Admin;
-import systemusers.Client;
+import theater.systemusers.Admin;
+import theater.systemusers.Client;
 
-import systemusers.SystemCheck;
+import theater.systemusers.SystemCheck;
+import theater.systemusers.User;
 import theater.Cinema;
 import theater.Movie;
 
@@ -25,11 +26,14 @@ public class Demo {
 		
 		//Make some people (10 Clients and one admin)
 		ArrayList<Client> clients = new ArrayList();
-		for(int i = 1; i <= 10;i++) {
-			clients.add(new Client("Client" + i, "TheClient" + i,"1234" + i , "Batka" + i + "@abv.bg", "0875154515"));
+		for(int i = 1; i <= 3;i++) {
+			Client c = new Client("Client" + i, "TheClient" + i,"1234" + i , "Batka" + i + "@abv.bg", "0875154510");
+			clients.add(c);
+			c.registration();
+			c.logOut(c.getPassword());
 		}
-		Admin theAdmin = new Admin("Bai Admin", "TheAdmin", "azsumnumberone", "Golemiq@abv.bg", "0895666666");
 		
+		Admin theAdmin = new Admin("Bai Admin", "TheAdmin", "azsumnumberone", "Golemiq@abv.bg", "0895666666");
 		//Print the program of movies in the cinema
 		cinema.printBroadcasts();
 		//Make reservations

@@ -1,4 +1,4 @@
-package systemusers;
+package theater.systemusers;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -70,9 +70,6 @@ public final class SystemCheck {
 	}
 	
 	public static boolean verifyUsername(String username){
-		if(!validation(username)) {
-	    	 return false;
-	    }
 
 	    if(!username.matches("[A-Za-z0-9_]+")) {
 	    	return false;
