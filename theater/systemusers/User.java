@@ -1,4 +1,4 @@
-package systemusers;
+package theater.systemusers;
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ public abstract class User {
 	protected String password;
 	protected String email;
 	protected String phone;
-	private boolean activeAccount;
+	protected boolean activeAccount;
 	protected static Cinema cinema;
 	
 	public User(String name, String email, String phone) {
@@ -23,8 +23,11 @@ public abstract class User {
 	}
 
 	public void registration() {
+		
 		Scanner sc = new Scanner(System.in);
+		System.out.println("Please enter username: ");
 		String username = sc.nextLine();
+		System.out.println("Please enter password: ");
 		String password = sc.nextLine();
 		
 		if(SystemCheck.inputValidation(username, password)) {

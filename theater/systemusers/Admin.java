@@ -1,4 +1,4 @@
-package systemusers;
+package theater.systemusers;
 
 import theater.Movie;
 
