@@ -20,4 +20,6 @@ public class Reservation {
 		this.canceled = true;
 	}
 	
+	
+	
 }
