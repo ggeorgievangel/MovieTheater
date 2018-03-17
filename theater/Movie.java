@@ -1,13 +1,17 @@
 package theater;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Movie implements Watchable {
+import theater.systemusers.SystemCheck;
 
+public class Movie implements Watchable,Serializable {
+	
+	
 	private String name;
 	private String info;
 	private int rating; 
@@ -32,12 +36,19 @@ public class Movie implements Watchable {
 		return Collections.unmodifiableMap(this.broadcasts);
 	}
 	
+
 	void addBroadcast(Hall hall, LocalTime time) {
 		this.broadcasts.put(hall, time);
 	}
 
 	public void setRating(int rating) {
-		this.rating = rating;
+		if(this.rating == 0) {
+			this.rating = rating;
+		}else {
+			this.rating = (this.rating + rating) / 2;
+		}
+		
+		
 	}
 	
 	
@@ -64,6 +75,11 @@ public class Movie implements Watchable {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String toString() {
+		return this.name;
 	}
 	
 }
