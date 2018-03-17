@@ -32,16 +32,18 @@ public class Demo {
 		//Make some people (10 Clients and one admin)
 		ArrayList<Client> clients = new ArrayList();
 		for(int i = 1; i <= 3;i++) {
-			Client c = new Client("Client" + i, "TheClient" + i,"1234" + i , "Batka" + i + "@abv.bg", "0875154510");
-			clients.add(c);
-			c.registration();
+			Client client = new Client("Client" + i, "client" + i + "@abv.bg", "0875154510");
+			clients.add(client);
+			client.registration();
 		}
-		Admin theAdmin = new Admin("Bai Admin", "TheAdmin", "azsumnumberone", "Golemiq@abv.bg", "0895666666");
+		Admin admin = new Admin("Bai Admin", "Golemiq@abv.bg", "0895666666");
 		
+	
 		//Make reservations
 		for(Client c : clients) {
 			c.makeReservation(SystemCheck.getRandomNum(1, 10));
 		}
+		
 		//3 clients to cancel reservations
 		clients.get(SystemCheck.getRandomNum(clients.size()-1)).cancelLastReservation();
 		clients.get(SystemCheck.getRandomNum(clients.size()-1)).cancelLastReservation();

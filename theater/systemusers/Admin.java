@@ -5,7 +5,7 @@ import theater.Movie;
 public class Admin extends User {
 	
 	
-	public Admin(String name, String username, String password, String email, String phone) {
+	public Admin(String name, String email, String phone) {
 		super(name, email, phone);
 	}
 

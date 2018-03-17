@@ -19,73 +19,74 @@ public final class SystemCheck {
 		return r.nextInt(max - min) + min;
 	}
 
-	public static boolean inputValidation(String username, String password) {
+	public static boolean inputValidation(String username, String password) throws InvalidUserExeption {
 		if(validation(username) && validation(password)) {
 			return true;
 		}
-		return false;
+		else {
+			throw new InvalidUserExeption("Invalid User name or password");
+		}
 	}
 
-	private static boolean validation(String text) {
+	public static boolean validation(String text)  {
 		if( text != null && !text.trim().isEmpty()){
 			return true;
 		}
 		return false;
 	}
 	
-	public static boolean verifyEmail(String email){
+	public static boolean verifyEmail(String email) throws InvalidUserExeption {
 	    if(!validation(email)) {
-	    	 return false;
+	    	 throw new InvalidUserExeption("Invalid e-mail");
 	    }
 	      
 	    if(!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")) {
-	    	return false;
-	    }
-	        
+	    	 throw new InvalidUserExeption("Invalid e-mail");
+	    }   
 	    return true;
 	}
 	
-	public static boolean verifyName(String name){
+	public static boolean verifyName(String name) throws InvalidUserExeption {
 		if(!validation(name)) {
-	    	 return false;
+			throw new InvalidUserExeption("Invalid Name");
 	    }
 
 	    if(!name.matches("[a-zA-Z]*")) {
-	    	return false;
+			throw new InvalidUserExeption("Invalid Name");
 	    }
 	        
 	    return true;
 	}
 	
-	public static boolean verifyPhoneNumber(String number){
+	public static boolean verifyPhoneNumber(String number) throws InvalidUserExeption {
 		if(!validation(number)) {
-	    	 return false;
+			throw new InvalidUserExeption("Invalid Phone number");
 	    }
 
 	    if(number.length() != 10 || !number.matches("[0-9]+")) {
-	    	return false;
+			throw new InvalidUserExeption("Invalid Phone number");
 	    }
 	        
 	    return true;
 	}
 	
-	public static boolean verifyUsername(String username){
+	public static boolean verifyUsername(String username) throws InvalidUserExeption {
 
 	    if(!username.matches("[A-Za-z0-9_]+")) {
-	    	return false;
+			throw new InvalidUserExeption("Invalid User name");
 	    }
 	        
 	    return true;
 	}
 	
-	public static boolean verifyPassword(String password){
+	public static boolean verifyPassword(String password) throws InvalidUserExeption {
 		if(!validation(password)) {
-	    	 return false;
+			throw new InvalidUserExeption("Invalid password");
 	    }
 
 	    if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$)")) {
 	    	System.out.println("Pleas enter valid password: atleast one digit, one lowercase, one uppercase and at least one symbol!");
-	    	return false;
+	    	throw new InvalidUserExeption("Invalid password");
 	    }
 	        
 	    return true;

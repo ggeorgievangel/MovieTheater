@@ -22,9 +22,8 @@ public class Client extends User {
 	private List<Reservation> reservations = new ArrayList<>();
 	
 	
-	public Client(String name, String username, String password, String email, String phone) {
+	public Client(String name, String email, String phone) {
 		super(name, email, phone);
-		// TODO Auto-generated constructor stub
 	}
 
 	public void addMovieToFavoriteList(Movie movie) {
@@ -64,7 +63,7 @@ public class Client extends User {
 			if(this.reservations.size() != 0) {
 				this.reservations.get(this.reservations.size()-1).cancel();
 				this.reservations.remove(this.reservations.size()-1);	
-				System.out.println(this.name + " canvel my last reservation.");
+				System.out.println(this.name + " cancel my last reservation.");
 			}else {
 				System.out.println("No reservation to cancel!");
 			}
@@ -72,7 +71,6 @@ public class Client extends User {
 			System.out.println("You have to SignIn to cancel reservation!");
 		}
 	}
-	
 	
 	public void reciveTicket(Reservation t) {
 		if(t != null) {

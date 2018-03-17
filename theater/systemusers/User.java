@@ -5,7 +5,6 @@ import java.util.Scanner;
 import theater.Cinema;
 
 public abstract class User {
-	
 
 	protected String name; //First name and last name
 	protected String username;
@@ -13,42 +12,52 @@ public abstract class User {
 	protected String email;
 	protected String phone;
 	protected boolean activeAccount;
-	protected static Cinema cinema;
+	protected static Cinema cinema = Cinema.getInstance();
 	
 	public User(String name, String email, String phone) {
-		this.name = name;
-		this.email = email;
-		this.phone = phone;
-		this.cinema = Cinema.getInstance();
+		// creating user with personal information:
+		try {
+			this.setName(name);
+			this.setEmail(email);
+			this.setPhone(phone);
+		}
+		catch (InvalidUserExeption e) {
+			System.out.println(e.getMessage());
+		}
+		
 	}
 
 	public void registration() {
-		
+		// register user
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Please enter username: ");
 		String username = sc.nextLine();
 		System.out.println("Please enter password: ");
 		String password = sc.nextLine();
 		
-		if(SystemCheck.inputValidation(username, password)) {
-			this.username = username;
-			this.password = password;
-			Cinema.registrateUser(this.name, this);
-			this.activeAccount = true;
-		}
-		else {
-			System.out.println("Invalid user name or password!");
+		try {
+			if(SystemCheck.inputValidation(username, password)) {
+				this.username = username;
+				this.password = password;
+				Cinema.registrateUser(this.name, this);
+				this.activeAccount = true;
+			}
+			else {
+				System.out.println("Invalid user name or password! Enter again: ");
+				registration();
+			}
+		} 
+		catch (InvalidUserExeption e) {
+			System.out.println(e.getMessage());
 		}
 	}
 	
-	public boolean signIn(String username, String password) {
+	public void signIn(String username, String password) {
 		// first check for registration
 		if(Cinema.registrationCheck(username, password)) {
 			System.out.println(this.name + " you are logged in!");
 			this.activeAccount = true;
-			return true;
 		}
-		return false;
 	}
 
 	public  void logOut(String password) {
@@ -56,6 +65,7 @@ public abstract class User {
 		this.activeAccount = false;
 	}
 	
+	// getters:
 	public static Cinema getCinema() {
 		return User.cinema;
 	}
@@ -63,4 +73,37 @@ public abstract class User {
 	public String getPassword() {
 		return password;
 	}
+
+	// setters:
+	public void setName(String name) throws InvalidUserExeption {
+		if(SystemCheck.validation(name)){
+			this.name = name;
+		}
+		else {
+			throw new InvalidUserExeption("Invalid Name");
+		}
+	}
+
+	public void setEmail(String email) {
+		try {
+			if(SystemCheck.verifyEmail(email)){
+				this.email = email;
+			}
+		}
+		catch(InvalidUserExeption e){
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
+	public void setPhone(String phone) {
+		try {
+			if(SystemCheck.verifyPhoneNumber(phone)){
+				this.phone = phone;
+			}
+		} catch (InvalidUserExeption e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 }
