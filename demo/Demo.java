@@ -25,7 +25,7 @@ public class Demo {
 		// set the broadcasts and print the movies for the week
 		cinema.setTheBroadcasts();
 		cinema.printBroadcasts();
-	
+		
 		System.out.println("         For the demo lets register some clients ");
 		System.out.println("         Lets begin the registrations: ");
 		

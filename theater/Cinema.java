@@ -47,15 +47,15 @@ public class Cinema {
 			File movieFile = new File(Cinema.PATH_FOR_MOVIES);
 			if(!movieFile.exists()) {
 				movieFile.createNewFile();
+			}else {
+				FileInputStream fis = new FileInputStream(movieFile);
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				Object tempobj;
+				if((tempobj = ois.readObject()) != null) {
+					this.movies = (HashSet)tempobj;
+				}
+				ois.close();
 			}
-			FileInputStream fis = new FileInputStream(movieFile);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			Object tempobj;
-			if((tempobj = ois.readObject()) != null) {
-				this.movies = (HashSet)tempobj;
-			}
-			ois.close();
-		
 		}catch (IOException e) {
 			System.out.println("Somethin is wrong with the movie arhive file on intput!!");
 			e.printStackTrace();
@@ -138,7 +138,6 @@ public class Cinema {
 			System.out.println("Somethin is wrong with the movie arhive file on output!!");
 		}
 	}
-	
 	
 	public void removeMovie(Movie movie) {
 		if (movie != null) {

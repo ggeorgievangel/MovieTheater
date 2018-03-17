@@ -32,14 +32,6 @@ public class Movie implements Watchable,Serializable {
 	public int getRating() {
 		return rating;
 	}
-	public Map<Hall, LocalTime> getBroadcasts() {
-		return Collections.unmodifiableMap(this.broadcasts);
-	}
-	
-
-	void addBroadcast(Hall hall, LocalTime time) {
-		this.broadcasts.put(hall, time);
-	}
 
 	public void setRating(int rating) {
 		if(this.rating == 0) {
@@ -47,10 +39,18 @@ public class Movie implements Watchable,Serializable {
 		}else {
 			this.rating = (this.rating + rating) / 2;
 		}
-		
-		
 	}
 	
+	
+	public Map<Hall, LocalTime> getBroadcasts() {
+		return Collections.unmodifiableMap(this.broadcasts);
+	}
+	
+
+   void addBroadcast(Hall hall, LocalTime time) {
+     	this.broadcasts.put(hall, time);
+ 	}
+
 	
 	@Override
 	public int hashCode() {
