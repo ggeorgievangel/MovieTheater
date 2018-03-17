@@ -67,12 +67,11 @@ public class Cinema {
 
 	public Reservation checkReservation(Broadcast b, int places) {
 		// check is there enough places for this broadcast
-		// if there are enough places --> return reservation for this broadcast with
-		// places
-		// else if free places are not enough --> message
 		if (b.getPlaces() < places) {
+			// else if free places are not enough --> message
 			System.out.println("Sorry, not eneug free sits for this broadcast.");
 		}
+		// if there are enough places --> return reservation for this broadcast with places
 		return new Reservation(b, places);
 	}
 
@@ -86,10 +85,6 @@ public class Cinema {
 		if (movie != null) {
 			this.movies.remove(movie);
 		}
-	}
-
-	public void registurClient() {
-
 	}
 
 	public Set<Broadcast> getBroadcasts() {

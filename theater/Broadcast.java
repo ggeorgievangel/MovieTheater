@@ -9,7 +9,6 @@ public class Broadcast implements Comparable<Broadcast>{
 	private LocalTime projectionTime;
 	private Hall projectionHall;
 	private int places;
-	
 
 	public Broadcast(Watchable movie, LocalTime projectionTime, Hall projectionHall) {
 		this.movie = (Movie)movie;
