@@ -34,7 +34,9 @@ public class Demo {
 		for(int i = 1; i <= 3;i++) {
 			Client client = new Client("Client" + i, "client" + i + "@abv.bg", "0875154510");
 			clients.add(client);
-			client.registration();
+			if(client != null) {
+				client.registration();
+			}
 		}
 		Admin admin = new Admin("Bai Admin", "Golemiq@abv.bg", "0895666666");
 		
@@ -43,12 +45,14 @@ public class Demo {
 		for(Client c : clients) {
 			c.makeReservation(SystemCheck.getRandomNum(1, 10));
 		}
+
+		clients.get(0).profileChanges();
+		clients.get(0).profileChanges();
 		
 		//3 clients to cancel reservations
 		clients.get(SystemCheck.getRandomNum(clients.size()-1)).cancelLastReservation();
 		clients.get(SystemCheck.getRandomNum(clients.size()-1)).cancelLastReservation();
 		clients.get(SystemCheck.getRandomNum(clients.size()-1)).cancelLastReservation();
-		
 		
 	}
 }

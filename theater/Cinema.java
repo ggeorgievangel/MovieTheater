@@ -166,6 +166,10 @@ public class Cinema {
 	public String getName() {
 		return name;
 	}
-	
 
+	public static void removeUser(String oldUsername) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
