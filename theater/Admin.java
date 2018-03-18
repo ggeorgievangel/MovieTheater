@@ -1,7 +1,9 @@
-package theater.systemusers;
+package theater;
 
-import theater.Cinema;
-import theater.Movie;
+import java.util.Map;
+
+import theater.systemusers.Client;
+import theater.systemusers.User;
 
 public class Admin extends User {
 	
@@ -21,35 +23,40 @@ public class Admin extends User {
 		return instance;
 	}
 	
+	public void removeUser(Client c) {
+		if(this.getAccountStatus()) {
+			this.cinema.removeUser(c);
+		}
+		return;
+	}
+	
 	public void addMovie(Movie movie) {
-		if(movie != null){
+		if(this.getAccountStatus() && movie != null){
 			this.cinema.addMovie(movie);
 		}
 	}
 	
 	public void removeMovie(Movie movie) {
-		if(movie != null){
+		if(this.getAccountStatus() && movie != null){
 			this.cinema.removeMovie(movie);
 		}
 	}
 	
-	public void addBroadcast() {
-		// TODO
+	public void addBroadcasts() {
+		if(this.getAccountStatus()) {
+			this.cinema.setTheBroadcasts();
+		}
 	}
 	
 	public void removeBroadcast() {
 		// TODO
 	}
 	
-	public void removeUser() {
+	public void cancelUserReservation() {
 		// TODO
 	}
 	
-	public void cancelUserReservation() {
-		
-	}
-	
 	public void cancelAllReservations() {
-		
+		// TODO
 	}
 }

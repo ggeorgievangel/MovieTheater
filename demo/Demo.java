@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-import theater.systemusers.Admin;
 import theater.systemusers.Client;
 
 import theater.systemusers.SystemCheck;
 import theater.systemusers.User;
+import theater.Admin;
 import theater.Cinema;
 import theater.Movie;
 
@@ -29,11 +29,13 @@ public class Demo {
 		String adminPass = sc.nextLine();
 		admin.signIn(adminUsername, adminPass);
 		System.out.println(admin.getPassword());
+		
 		// Add movies in the cinema
 		cinema.addMovie(new Movie("The Avengers", "Action"));
 		cinema.addMovie(new Movie("Scary Movie", "Comedy"));
 		cinema.addMovie(new Movie("SAW", "Triller"));
 		cinema.addMovie(new Movie("Stargate", "Sci-Fi"));
+		
 		// set the broadcasts and print the movies for the week
 		cinema.setTheBroadcasts();
 		cinema.printBroadcasts();
@@ -64,9 +66,8 @@ public class Demo {
 		clients.get(SystemCheck.getRandomNum(clients.size()-1)).cancelLastReservation();
 		clients.get(SystemCheck.getRandomNum(clients.size()-1)).cancelLastReservation();
 		
-		for(Client c : clients) {
-			c.showUserInfo();
-		}
+		admin.removeUser(clients.get(1));
+		cinema.showAllUsers();
 
 	}
 }

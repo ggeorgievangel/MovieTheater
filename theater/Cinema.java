@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
-import theater.systemusers.Admin;
 import theater.systemusers.Client;
 import theater.systemusers.SystemCheck;
 import theater.systemusers.User;
@@ -36,6 +35,7 @@ public class Cinema {
 	private Set<Watchable> movies = new HashSet<>();
 	private LinkedHashSet<Hall> halls = new LinkedHashSet<>();
 	private TreeSet<Broadcast> broadcasts = new TreeSet<>();
+	private Admin admin = Admin.getInstance();
 
 	private Cinema() {
 		this.name = "Botevgrad Movie Theater";
@@ -46,7 +46,7 @@ public class Cinema {
 		}
 		
 		//add admin to cinema:
-		users.put("admin", Admin.getInstance());
+		this.users.put("admin", Admin.getInstance());
 		
 		//Read from the file all the movies
 		try {
@@ -82,6 +82,7 @@ public class Cinema {
 	public void setTheBroadcasts() {
 		int i = 0;
 		ArrayList<Hall> halls = new ArrayList<>(this.halls);
+		
 		//Get all the movies and shuffle them so we can get a random movie every week
 		ArrayList<Watchable> movies = new ArrayList<>(this.movies);
 		Collections.shuffle(movies);
@@ -130,29 +131,29 @@ public class Cinema {
 	private void addMovieToArchive(Movie m) {
 		try {
 			//Add movies to file
-		File movieFile = new File(Cinema.PATH_FOR_MOVIES);
-		if(!movieFile.exists()) {
-			movieFile.createNewFile();
-		}
-		FileOutputStream fos = new FileOutputStream(movieFile);
-		ObjectOutputStream oos = new ObjectOutputStream(fos);
-		oos.writeObject(this.movies);
-		oos.flush();
-		oos.close();
+			File movieFile = new File(Cinema.PATH_FOR_MOVIES);
+			if(!movieFile.exists()) {
+				movieFile.createNewFile();
+			}
+			FileOutputStream fos = new FileOutputStream(movieFile);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(this.movies);
+			oos.flush();
+			oos.close();
 		
 		}catch (IOException e) {
 			System.out.println("Somethin is wrong with the movie arhive file on output!!");
 		}
 	}
 	
-	public void removeMovie(Movie movie) {
+	void removeMovie(Movie movie) {
 		if (movie != null) {
 			this.movies.remove(movie);
 		}
 	}
 
 	public Set<Broadcast> getBroadcasts() {
-		return Collections.unmodifiableSet(broadcasts);
+		return Collections.unmodifiableSet(this.broadcasts);
 	}
 
 	public static boolean registrationCheck(String inputUsername, String inputPassword) {
@@ -170,5 +171,16 @@ public class Cinema {
 
 	public String getName() {
 		return name;
+	}
+	
+	public void showAllUsers() {
+		for(User u : users.values()) {
+			u.showUserInfo();
+		}
+	}
+
+	void removeUser(Client c) {
+		System.out.println("User " + c.getUsername() + " will be removed!");
+		users.remove(c.getUsername());
 	}
 }

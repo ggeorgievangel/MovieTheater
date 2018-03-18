@@ -66,19 +66,28 @@ public abstract class User {
 		}
 	}
 
-	public void logOut(String password) {
-		System.out.println(this.name + " loging out!");
-		this.activeAccount = false;
-		System.out.println(this.name + " - logout from profile!");
+	public void logOut() {
+		if(this.getAccountStatus()) {
+			System.out.println(this.name + " loging out!");
+			this.activeAccount = false;
+			System.out.println(this.name + " - logout from profile!");	
+		}
 	}
 	
 	// getters:
-	
 	// this is not cool, we are using it for a check when user with registration try to signIn
 	public String getPassword() {
 		return password;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+	
+	public boolean getAccountStatus() {
+		return this.activeAccount;
+	}
+	
 	// setters:
 	protected void setName(String name) throws InvalidUserExeption {
 		try {
@@ -121,7 +130,7 @@ public abstract class User {
 			if(SystemCheck.inputValidation(this.username, newPassword)) { 
 				this.password = newPassword;
 				System.out.println(this.name + " set new password!");
-				this.logOut(newPassword);
+				this.logOut();
 				System.out.println("Please signIn again with your new password!");
 				String passCheck = sc.nextLine();
 				this.signIn(this.username, passCheck);
@@ -133,51 +142,53 @@ public abstract class User {
 	}
 	
 	public void profileChanges() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println(this.name + " wants to make some profile changes: ");
-		System.out.println("to change your password type: password" );
-		System.out.println("to change your name type: name");
-		System.out.println("to change your e-mail: mail" );
-		System.out.println("to change your phorne type: phone" );
-		
-		try{
-			String change = sc.nextLine();
-			if(SystemCheck.checkChanges(change)) {
-				switch (change) {	
-					case "password":
-					System.out.println("Please enter new password: ");
-					String newPassword = sc.nextLine();
-					this.setPassword(newPassword);
-					break;
-					case "name":
-						System.out.println("Please enter new name: ");
-						String newName = sc.nextLine();
-						this.setName(newName);
+		if(this.getAccountStatus()) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println(this.name + " wants to make some profile changes: ");
+			System.out.println("to change your password type: password" );
+			System.out.println("to change your name type: name");
+			System.out.println("to change your e-mail: mail" );
+			System.out.println("to change your phorne type: phone" );
+			
+			try{
+				String change = sc.nextLine();
+				if(SystemCheck.checkChanges(change)) {
+					switch (change) {	
+						case "password":
+						System.out.println("Please enter new password: ");
+						String newPassword = sc.nextLine();
+						this.setPassword(newPassword);
 						break;
-					case "mail":
-						System.out.println("Please enter new e-mail: ");
-						String newMail = sc.nextLine();
-						this.setEmail(newMail);
-						break;
-					case "phone":
-						System.out.println("Please enter new phone number: ");
-						String newPhone = sc.nextLine();
-						this.setPhone(newPhone);
-						break;
-					default:
-						break;
+						case "name":
+							System.out.println("Please enter new name: ");
+							String newName = sc.nextLine();
+							this.setName(newName);
+							break;
+						case "mail":
+							System.out.println("Please enter new e-mail: ");
+							String newMail = sc.nextLine();
+							this.setEmail(newMail);
+							break;
+						case "phone":
+							System.out.println("Please enter new phone number: ");
+							String newPhone = sc.nextLine();
+							this.setPhone(newPhone);
+							break;
+						default:
+							break;
+					}
 				}
 			}
-		}
-		catch (InvalidUserExeption e) {
-			System.out.println(e.getMessage());
+			catch (InvalidUserExeption e) {
+				System.out.println(e.getMessage());
+			}
 		}
 	}
 	
 	public void showUserInfo() {
 		System.out.println("\n=====User information=====");
 		System.out.println("name: " + this.name + 
-						  "\nusername:" + this.username + 
+						  "\nusername: " + this.username + 
 						  "\ne-mail: "+ this.email + 
 						  "\nphone: "+ this.phone);
 		System.out.println("==========================");
