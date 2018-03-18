@@ -40,18 +40,23 @@ public class Client extends User {
 	public void makeReservation(Cinema movieTheater, int places) {
 		if(this.activeAccount) {
 			ArrayList<Broadcast> broad = new ArrayList<Broadcast>(movieTheater.getBroadcasts());
-			Broadcast b = broad.get(SystemCheck.getRandomNum(broad.size()-1));
-			System.out.println(this.name + ": I'm making reservation for " + b.getMovie().getName() + " for " +b.getProjectionTime() + " in hall " + b.getProjectionHall().getNumber() + " and " + places + " sits");
-			Reservation reserve = movieTheater.checkReservation(b,places);
-			if(reserve != null) {
-				System.out.println("Reservation is complete!");
-				//Rate the movie
-				this.rateMovie(b.getMovie(), SystemCheck.getRandomNum(2, 6));
-				//Set the movie to favorite
-				if(new Random().nextBoolean()) {
-					this.addMovieToFavoriteList(b.getMovie());
+			if(!broad.isEmpty()) {
+				Broadcast b = broad.get(SystemCheck.getRandomNum(broad.size()-1));
+				System.out.println(this.name + ": I'm making reservation for " + b.getMovie().getName() + " for " +b.getProjectionTime() + " in hall " + b.getProjectionHall().getNumber() + " and " + places + " sits");
+				Reservation reserve = movieTheater.checkReservation(b,places);
+				if(reserve != null) {
+					System.out.println("Reservation is complete!");
+					//Rate the movie
+					this.rateMovie(b.getMovie(), SystemCheck.getRandomNum(2, 6));
+					//Set the movie to favorite
+					if(new Random().nextBoolean()) {
+						this.addMovieToFavoriteList(b.getMovie());
+					}
+					this.reservations.add(reserve);
 				}
-				this.reservations.add(reserve);
+			}
+			else {
+				System.out.println("Sorry, no broadcasts.. we are closed.");
 			}
 		}
 		else {

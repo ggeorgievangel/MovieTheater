@@ -7,51 +7,51 @@ import theater.systemusers.User;
 
 public class Admin extends User {
 	
-	protected static Cinema cinema = Cinema.getInstance();
-	private static Admin instance = null;
+	
+	private static Admin adminInstance = null;
+	private static Cinema movieTheater = Cinema.getInstance();
 	
 	private Admin() {
 		// Admin (Name, username, password, email, phone)
 		super("Administartor", "admin", "admin", "admincho@abv.bg", "0888111222");
-		
 	}
 	
 	public static Admin getInstance() {
-		if (instance == null) {
-			instance = new Admin();
-			return instance;
+		if (adminInstance == null) {
+			adminInstance = new Admin();
+			return adminInstance;
 		}
-		return instance;
+		return adminInstance;
 	}
 	
 	public void removeUser(Client c) {
 		if(this.getAccountStatus()) {
-			this.cinema.removeUser(c);
+			Cinema.getInstance().removeUser(c);
 		}
 		return;
 	}
 	
-	public void addMovie(Movie movie) {
+	public void addMovieToCinema(Movie movie) {
 		if(this.getAccountStatus() && movie != null){
-			this.cinema.addMovie(movie);
+			Cinema.getInstance().addMovie(movie);
 		}
 	}
 	
 	public void removeMovie(Movie movie) {
 		if(this.getAccountStatus() && movie != null){
-			this.cinema.removeMovie(movie);
+			Cinema.getInstance().removeMovie(movie);
 		}
 	}
 	
 	public void addBroadcasts() {
 		if(this.getAccountStatus()) {
-			this.cinema.setTheBroadcasts();
+			Cinema.getInstance().setTheBroadcasts();
 		}
 	}
 	
 	public void printBroadcasts() {
 		if(this.getAccountStatus()) {
-			this.cinema.printBroadcasts();;
+			Cinema.getInstance().printBroadcasts();
 		}
 	}
 	

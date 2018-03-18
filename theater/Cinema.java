@@ -33,11 +33,11 @@ public class Cinema {
 	private String name;
 	private String address;
 	private static TreeMap<String, User> users = new TreeMap<>(); // Collection <username, user>
-	private Set<Watchable> movies = new HashSet<>();
+	private Set<Watchable> allMovies = new HashSet<>();
 	private LinkedHashSet<Hall> halls = new LinkedHashSet<>();
 	private TreeSet<Broadcast> broadcasts = new TreeSet<>();
-	private Admin admin = Admin.getInstance();
-
+	//private Admin admin = Admin.getInstance();
+	
 	private Cinema() {
 		this.name = "Botevgrad Movie Theater";
 		this.address = "Cinema Str 7";
@@ -47,9 +47,7 @@ public class Cinema {
 		}
 		
 		//add admin to cinema:
-		this.users.put("admin", Admin.getInstance());
-		
-		//Read from the file all the movies
+		users.put("admin", Admin.getInstance());
 	}
 
 	public static Cinema getInstance() {
@@ -59,13 +57,13 @@ public class Cinema {
 		}
 		return instance;
 	}
-
-	public void setTheBroadcasts() {
+	
+	void setTheBroadcasts() {
 		int i = 0;
 		ArrayList<Hall> halls = new ArrayList<>(this.halls);
 		
 		//Get all the movies and shuffle them so we can get a random movie every week
-		ArrayList<Watchable> movies = new ArrayList<>(this.movies);
+		ArrayList<Watchable> movies = new ArrayList<>(this.allMovies);
 		Collections.shuffle(movies);
 		for (Watchable w : movies) {
 			this.broadcasts.add(new Broadcast(w, LocalTime.of(10, 00), halls.get(i)));
@@ -83,7 +81,7 @@ public class Cinema {
 		System.out.println("#########Broadcast for the week in cinema " + this.name + "########");
 		System.out.println();
 		for (Broadcast b : this.broadcasts) {
-			System.out.println(b.getMovie().getName() + " from " + b.getProjectionTime());
+			System.out.println(b.getMovie().getName() + " from " + b.getProjectionTime() + " in hall: " + b.getProjectionHall().getNumber());
 		}
 		System.out.println();
 		System.out.println();
@@ -99,13 +97,13 @@ public class Cinema {
 		return new Reservation(b, places);
 	}
 
-	public void addMovie(Movie movie) {
-		boolean containsMovie = this.movies.contains(movie);
+	void addMovie(Movie movie) {
+		boolean containsMovie = this.allMovies.contains(movie);
 		if (movie != null) {
-			this.movies.add(movie);
-			if(!containsMovie) {
-				addMovieToArchive(movie);	
-			}
+			this.allMovies.add(movie);
+		}
+		if(!containsMovie) {
+			addMovieToArchive(movie);	
 		}
 	}
 
@@ -118,7 +116,7 @@ public class Cinema {
 			}
 			FileOutputStream fos = new FileOutputStream(movieFile);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(this.movies);
+			oos.writeObject(this.allMovies);
 			oos.flush();
 			oos.close();
 		
@@ -129,7 +127,7 @@ public class Cinema {
 	
 	void removeMovie(Movie movie) {
 		if (movie != null) {
-			this.movies.remove(movie);
+			this.allMovies.remove(movie);
 		}
 	}
 
@@ -164,4 +162,11 @@ public class Cinema {
 		System.out.println("User " + c.getUsername() + " will be removed!");
 		users.remove(c.getUsername());
 	}
+	
+	public void showAllMovies(){
+		for(Watchable w : allMovies) {
+			System.out.println(w);
+		}
+	}
+	
 }

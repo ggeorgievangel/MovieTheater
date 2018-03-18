@@ -9,7 +9,7 @@ import java.util.Map;
 
 import theater.systemusers.SystemCheck;
 
-public class Movie implements Watchable,Serializable {
+public class Movie implements Watchable, Serializable, Comparable<Movie> {
 	
 	
 	private String name;
@@ -79,7 +79,16 @@ public class Movie implements Watchable,Serializable {
 	
 	@Override
 	public String toString() {
-		return this.name;
+		return "\n*************************" + 
+				"\nMovie: " + this.name + 
+				"\nInformation: " + this.info + 
+				"\nMovie raiting: " + this.rating +
+				"\n*************************\n";
+	} 
+
+	@Override
+	public int compareTo(Movie movie) {
+		return this.name.compareTo(movie.name);
 	}
 	
 }

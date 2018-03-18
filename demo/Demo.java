@@ -21,30 +21,29 @@ public class Demo {
 		//creating Cinema:
 		Cinema cinema = Cinema.getInstance();
 		
-		// creating admin and signIn with username: admin, password: admin
+		// admin signIn with username: admin, password: admin
 		Admin admin = Admin.getInstance();
 		System.out.println("Admin signIn, please enter admin username: ");
 		String adminUsername = sc.nextLine();
 		System.out.println("Admin signIn, please enter admin password: ");
 		String adminPass = sc.nextLine();
+		
 		admin.signIn(adminUsername, adminPass);
-		System.out.println(admin.getPassword());
 		
 		// Add movies in the cinema
-		admin.addMovie(new Movie("The Avengers", "Action"));
-//		cinema.addMovie(new Movie("The Avengers", "Action"));
-		admin.addMovie(new Movie("Scary Movie", "Comedy"));
-//		cinema.addMovie(new Movie("Scary Movie", "Comedy"));
-		admin.addMovie(new Movie("SAW", "Triller"));
-//		cinema.addMovie(new Movie("SAW", "Triller"));
-		admin.addMovie(new Movie("Stargate", "Sci-Fi"));
-//		cinema.addMovie(new Movie("Stargate", "Sci-Fi"));
+		admin.addMovieToCinema(new Movie("The Avengers", "Action"));
+		admin.addMovieToCinema(new Movie("Scary Movie", "Comedy"));
+		admin.addMovieToCinema(new Movie("SAW", "Triller"));
+		admin.addMovieToCinema(new Movie("Stargate", "Sci-Fi"));
+		
+		System.out.println("\nALL MOVIES IN: " + cinema.getName());
+		cinema.showAllMovies();
 		
 		// set the broadcasts and print the movies for the week
 		admin.addBroadcasts();
-//		cinema.setTheBroadcasts();
-		admin.printBroadcasts();
-//		cinema.printBroadcasts();
+		cinema.printBroadcasts();
+		
+		
 		
 		System.out.println("         For the demo lets register some clients ");
 		System.out.println("         Lets begin the registrations: ");
