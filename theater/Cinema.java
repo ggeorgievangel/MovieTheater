@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.StreamCorruptedException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +29,7 @@ public class Cinema {
 	private static final int MAX_MOVIE_FOR_THE_WEEK = 4;
 	private static final int ALL_HALLS = 4;
 	private static final String PATH_FOR_MOVIES = "Movies.txt";
-	private static Cinema instance = null;
+	private static Cinema instance;
 	private String name;
 	private String address;
 	private static TreeMap<String, User> users = new TreeMap<>(); // Collection <username, user>
@@ -49,26 +50,6 @@ public class Cinema {
 		this.users.put("admin", Admin.getInstance());
 		
 		//Read from the file all the movies
-		try {
-			File movieFile = new File(Cinema.PATH_FOR_MOVIES);
-			if(!movieFile.exists()) {
-				movieFile.createNewFile();
-			}else {
-				FileInputStream fis = new FileInputStream(movieFile);
-				ObjectInputStream ois = new ObjectInputStream(fis);
-				Object tempobj;
-				if((tempobj = ois.readObject()) != null) {
-					this.movies = (HashSet)tempobj;
-				}
-				ois.close();
-			}
-		}catch (IOException e) {
-			System.out.println("Somethin is wrong with the movie arhive file on intput!!");
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			System.out.println("cnfe");
-			e.printStackTrace();
-		}
 	}
 
 	public static Cinema getInstance() {

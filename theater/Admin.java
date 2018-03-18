@@ -13,6 +13,7 @@ public class Admin extends User {
 	private Admin() {
 		// Admin (Name, username, password, email, phone)
 		super("Administartor", "admin", "admin", "admincho@abv.bg", "0888111222");
+		
 	}
 	
 	public static Admin getInstance() {
@@ -45,6 +46,12 @@ public class Admin extends User {
 	public void addBroadcasts() {
 		if(this.getAccountStatus()) {
 			this.cinema.setTheBroadcasts();
+		}
+	}
+	
+	public void printBroadcasts() {
+		if(this.getAccountStatus()) {
+			this.cinema.printBroadcasts();;
 		}
 	}
 	
