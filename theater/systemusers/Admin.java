@@ -1,23 +1,35 @@
 package theater.systemusers;
 
+import theater.Cinema;
 import theater.Movie;
 
 public class Admin extends User {
 	
+	protected static Cinema cinema = Cinema.getInstance();
+	private static Admin instance = null;
 	
-	public Admin(String name, String email, String phone) {
-		super(name, email, phone);
+	private Admin() {
+		// Admin (Name, username, password, email, phone)
+		super("Administartor", "admin", "admin", "admincho@abv.bg", "0888111222");
 	}
-
+	
+	public static Admin getInstance() {
+		if (instance == null) {
+			instance = new Admin();
+			return instance;
+		}
+		return instance;
+	}
+	
 	public void addMovie(Movie movie) {
 		if(movie != null){
-			User.getCinema().addMovie(movie);
+			this.cinema.addMovie(movie);
 		}
 	}
 	
 	public void removeMovie(Movie movie) {
 		if(movie != null){
-			User.getCinema().removeMovie(movie);
+			this.cinema.removeMovie(movie);
 		}
 	}
 	
@@ -27,5 +39,17 @@ public class Admin extends User {
 	
 	public void removeBroadcast() {
 		// TODO
+	}
+	
+	public void removeUser() {
+		// TODO
+	}
+	
+	public void cancelUserReservation() {
+		
+	}
+	
+	public void cancelAllReservations() {
+		
 	}
 }

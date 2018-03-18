@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import theater.systemusers.Admin;
 import theater.systemusers.Client;
 import theater.systemusers.SystemCheck;
 import theater.systemusers.User;
@@ -39,9 +40,14 @@ public class Cinema {
 	private Cinema() {
 		this.name = "Botevgrad Movie Theater";
 		this.address = "Cinema Str 7";
+		
 		for (int i = 1; i <= ALL_HALLS; i++) {
 			this.halls.add(new Hall(i, this));
 		}
+		
+		//add admin to cinema:
+		users.put("admin", Admin.getInstance());
+		
 		//Read from the file all the movies
 		try {
 			File movieFile = new File(Cinema.PATH_FOR_MOVIES);
@@ -165,10 +171,4 @@ public class Cinema {
 	public String getName() {
 		return name;
 	}
-
-	public static void removeUser(String oldUsername) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

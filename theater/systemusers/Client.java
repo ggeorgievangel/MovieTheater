@@ -11,6 +11,7 @@ import java.util.Set;
 import javax.swing.text.AbstractDocument.BranchElement;
 
 import theater.Broadcast;
+import theater.Cinema;
 import theater.Movie;
 import theater.Reservation;
 import theater.Watchable;
@@ -36,12 +37,12 @@ public class Client extends User {
 		m.setRating(rate);
 	}
 	
-	public void makeReservation(int places) {
+	public void makeReservation(Cinema movieTheater, int places) {
 		if(this.activeAccount) {
-			ArrayList<Broadcast> broad = new ArrayList<Broadcast>(cinema.getBroadcasts());
+			ArrayList<Broadcast> broad = new ArrayList<Broadcast>(movieTheater.getBroadcasts());
 			Broadcast b = broad.get(SystemCheck.getRandomNum(broad.size()-1));
 			System.out.println(this.name + ": I'm making reservation for " + b.getMovie().getName() + " for " +b.getProjectionTime() + " in hall " + b.getProjectionHall().getNumber() + " and " + places + " sits");
-			Reservation reserve = User.cinema.checkReservation(b,places);
+			Reservation reserve = movieTheater.checkReservation(b,places);
 			if(reserve != null) {
 				System.out.println("Reservation is complete!");
 				//Rate the movie

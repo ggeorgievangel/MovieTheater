@@ -12,7 +12,14 @@ public abstract class User {
 	protected String email;
 	protected String phone;
 	protected boolean activeAccount;
-	protected static Cinema cinema = Cinema.getInstance();
+	
+	protected User(String name, String username, String password, String email, String phone) {
+		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.phone = phone;
+	}
 	
 	public User(String name, String email, String phone) {
 		// creating user with personal information:
@@ -24,7 +31,6 @@ public abstract class User {
 		catch (InvalidUserExeption e) {
 			System.out.println(e.getMessage());
 		}
-		
 	}
 
 	public void registration() {
@@ -60,17 +66,15 @@ public abstract class User {
 		}
 	}
 
-	public  void logOut(String password) {
+	public void logOut(String password) {
 		System.out.println(this.name + " loging out!");
 		this.activeAccount = false;
 		System.out.println(this.name + " - logout from profile!");
 	}
 	
 	// getters:
-	public static Cinema getCinema() {
-		return User.cinema;
-	}
 	
+	// this is not cool, we are using it for a check when user with registration try to signIn
 	public String getPassword() {
 		return password;
 	}
@@ -130,11 +134,11 @@ public abstract class User {
 	
 	public void profileChanges() {
 		Scanner sc = new Scanner(System.in);
-		System.out.println(this.name + " ");
-		System.out.println("To change your password type: password" );
-		System.out.println("To change your name type: name");
-		System.out.println("To change your e-mail: mail" );
-		System.out.println("To change your phorne type: phone" );
+		System.out.println(this.name + " wants to make some profile changes: ");
+		System.out.println("to change your password type: password" );
+		System.out.println("to change your name type: name");
+		System.out.println("to change your e-mail: mail" );
+		System.out.println("to change your phorne type: phone" );
 		
 		try{
 			String change = sc.nextLine();
@@ -168,5 +172,14 @@ public abstract class User {
 		catch (InvalidUserExeption e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public void showUserInfo() {
+		System.out.println("\n=====User information=====");
+		System.out.println("name: " + this.name + 
+						  "\nusername:" + this.username + 
+						  "\ne-mail: "+ this.email + 
+						  "\nphone: "+ this.phone);
+		System.out.println("==========================");
 	}
 }
